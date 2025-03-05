@@ -5,10 +5,5 @@ services:
     command: tunnel run
     environment:
       - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
-
-  watchtower:
-    image: containrrr/watchtower
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --cleanup --schedule "0 0 * * *" cloudflared-tunnel
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
